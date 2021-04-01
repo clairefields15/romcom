@@ -21,7 +21,7 @@ var currentCover;
 // Add your event listeners here 👇
 homeButton.addEventListener('click', goHome)
 randomCoverButton.addEventListener('click', createRandomCover)
-// saveCoverButton.addEventListener('click', saveCover)
+saveCoverButton.addEventListener('click', saveCover)
 viewSavedButton.addEventListener('click', viewSaved)
 makeCoverButton.addEventListener('click', makeNew)
 
@@ -79,13 +79,19 @@ function createRandomCover() {
   var descriptor1 = randomTagline1(descriptors)
   var descriptor2 = randomTagline2(descriptors)
   currentCover = new Cover (cover1, title1, descriptor1, descriptor2);
-  console.log(currentCover)
 }
 
 
-// function saveCover() {
-//
-// }
+function saveCover() {
+  // var savedCover = coverImage.src
+  // var savedTitle = bookTitle.innerText
+  // var savedDescriptor1 = tagline1.innerText
+  // var savedDescriptor2 = tagline2.innerText
+  savedCovers = new Cover (coverImage.src, bookTitle.innerText, tagline1.innerText, tagline2.innerText);
+
+  // savedCovers = new Cover (savedCover, savedTitle, savedDescriptor1, savedDescriptor2);
+  console.log(savedCovers)
+}
 
 
 function viewSaved() {
