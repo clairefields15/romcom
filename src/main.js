@@ -11,6 +11,7 @@ var makeCoverButton = document.querySelector('.make-new-button');
 var homeSection = document.querySelector('.home-view');
 var savedSection = document.querySelector('.saved-view');
 var formSection = document.querySelector('.form-view');
+var clickCounter = 0;
 
 // We've provided a few variables below
 var savedCovers = [
@@ -74,6 +75,7 @@ function goHome() {
 
 
 function createRandomCover() {
+  clickCounter = 0
   var cover1 = randomCoverImage(covers);
   var title1 = randomTitle(titles)
   var descriptor1 = randomTagline1(descriptors)
@@ -83,14 +85,14 @@ function createRandomCover() {
 
 
 function saveCover() {
-  // var savedCover = coverImage.src
-  // var savedTitle = bookTitle.innerText
-  // var savedDescriptor1 = tagline1.innerText
-  // var savedDescriptor2 = tagline2.innerText
-  savedCovers = new Cover (coverImage.src, bookTitle.innerText, tagline1.innerText, tagline2.innerText);
-
-  // savedCovers = new Cover (savedCover, savedTitle, savedDescriptor1, savedDescriptor2);
-  console.log(savedCovers)
+  clickCounter++;
+  if (clickCounter === 1) {
+    var savedCover = coverImage.src
+    var savedTitle = bookTitle.innerText
+    var savedDescriptor1 = tagline1.innerText
+    var savedDescriptor2 = tagline2.innerText
+    savedCovers = new Cover (savedCover, savedTitle, savedDescriptor1, savedDescriptor2);
+  }
 }
 
 
