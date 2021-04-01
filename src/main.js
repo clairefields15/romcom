@@ -25,9 +25,10 @@ function randomEverything(covers, titles, descriptors) {
   var x = getRandomIndex(covers)
   var y = getRandomIndex(titles)
   var z = getRandomIndex(descriptors);
+  var zz = getRandomIndex(descriptors);
   coverImage.src = covers[x];
   bookTitle.innerText = titles[y];
   tagline1.innerText = descriptors[z];
-  tagline2.innerText = descriptors[z];
+  tagline2.innerText = descriptors[zz];
 }
 randomEverything(covers, titles, descriptors)
