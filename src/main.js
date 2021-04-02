@@ -86,7 +86,9 @@ function saveCover() {
     var savedTitle = bookTitle.innerText
     var savedDescriptor1 = tagline1.innerText
     var savedDescriptor2 = tagline2.innerText
-    savedCovers = new Cover (savedCover, savedTitle, savedDescriptor1, savedDescriptor2);
+    var mySavedCover = new Cover (savedCover, savedTitle, savedDescriptor1, savedDescriptor2);
+    savedCovers.push(mySavedCover)
+    console.log(savedCovers)
   }
 }
 
