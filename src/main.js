@@ -11,6 +11,11 @@ var makeCoverButton = document.querySelector('.make-new-button');
 var homeSection = document.querySelector('.home-view');
 var savedSection = document.querySelector('.saved-view');
 var formSection = document.querySelector('.form-view');
+var userCoverField = document.querySelector('.user-cover');
+var userTitleField = document.querySelector('.user-title');
+var userTagline1Field = document.querySelector('.user-desc1');
+var userTagline2Field = document.querySelector('.user-desc2');
+var createNewBookButton = document.querySelector('.create-new-book-button');
 
 // We've provided a few variables below
 var savedCovers = [
@@ -24,11 +29,10 @@ randomCoverButton.addEventListener('click', createRandomCover)
 // saveCoverButton.addEventListener('click', saveCover)
 viewSavedButton.addEventListener('click', viewSaved)
 makeCoverButton.addEventListener('click', makeNew)
+createNewBookButton.addEventListener('click', makeMyBook)
 
-// Create your event handlers and other functions here 👇
 
-
-// We've provided one function to get you started
+//functions and event handlers
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -63,6 +67,17 @@ randomTitle(titles);
 randomTagline1(descriptors);
 randomTagline2(descriptors);
 
+function createRandomCover() {
+  var cover1 = randomCoverImage(covers);
+  var title1 = randomTitle(titles)
+  var descriptor1 = randomTagline1(descriptors)
+  var descriptor2 = randomTagline2(descriptors)
+  currentCover = new Cover (cover1, title1, descriptor1, descriptor2);
+}
+
+// function saveCover() {
+//
+// }
 
 function goHome() {
   homeSection.classList.remove("hidden");
@@ -71,22 +86,6 @@ function goHome() {
   saveCoverButton.classList.remove("hidden");
   homeButton.classList.add("hidden");
 }
-
-
-function createRandomCover() {
-  var cover1 = randomCoverImage(covers);
-  var title1 = randomTitle(titles)
-  var descriptor1 = randomTagline1(descriptors)
-  var descriptor2 = randomTagline2(descriptors)
-  currentCover = new Cover (cover1, title1, descriptor1, descriptor2);
-  console.log(currentCover)
-}
-
-
-// function saveCover() {
-//
-// }
-
 
 function viewSaved() {
   homeSection.classList.add("hidden");
@@ -97,7 +96,6 @@ function viewSaved() {
   homeButton.classList.remove("hidden");
 }
 
-
 function makeNew() {
   homeSection.classList.add("hidden");
   formSection.classList.remove("hidden");
@@ -105,3 +103,27 @@ function makeNew() {
   saveCoverButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
 }
+
+function makeMyBook (){
+  event.preventDefault()
+
+  if (userCoverField.value && userTitleField.value && userTagline1Field.value && userTagline2Field.value) {
+    covers.push(userCoverField.value);
+    titles.push(userTitleField.value);
+    descriptors.push(userTagline1Field.value);
+    descriptors.push(userTagline2Field.value);
+  } else {
+    alert("You have some empty fields! Fill em in.")
+  }
+
+  var newUserCover = new Cover (userCoverField.value, userTitleField.value, userTagline1Field.value, userTagline2Field.value);
+
+  goHome();
+
+  //display our new user cover instance in the main cover
+  coverImage.src = newUserCover.cover;
+  bookTitle.innerText = newUserCover.title;
+  tagline1.innerText = newUserCover.tagline1;
+  tagline2.innerText = newUserCover.tagline2;
+
+};
