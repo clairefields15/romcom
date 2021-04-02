@@ -11,7 +11,9 @@ var makeCoverButton = document.querySelector('.make-new-button');
 var homeSection = document.querySelector('.home-view');
 var savedSection = document.querySelector('.saved-view');
 var formSection = document.querySelector('.form-view');
+var savedCovers = document.querySelector('.saved-covers-section');
 var clickCounter = 0;
+// var saveHtml = '<section class="main-cover"><img class="cover-image" src="./assets/prairie.jpg"><h2 class="cover-title">Windswept Hearts</h2><h3 class="tagline">A tale of <span class="tagline-1">passion</span> and <span class="tagline-2">woe</span></h3><img class="price-tag" src="./assets/price.png"><img class="overlay" src="./assets/overlay.png"></section>';
 
 // We've provided a few variables below
 var savedCovers = [
@@ -97,12 +99,23 @@ function saveCover() {
 
 
 function viewSaved() {
+  var saveHtml = `
+  <section class="main-cover">
+    <img class="cover-image" src="./assets/prairie.jpg">
+    <h2 class="cover-title">Windswept Hearts</h2>
+    <h3 class="tagline">A tale of <span class="tagline-1">passion</span> and <span class="tagline-2">woe</span></h3>
+    <img class="price-tag" src="./assets/price.png">
+    <img class="overlay" src="./assets/overlay.png">
+  </section>
+    `;
   homeSection.classList.add("hidden");
   savedSection.classList.remove("hidden");
   formSection.classList.add("hidden");
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
+  savedCovers.innerHTML = saveHtml;
+  console.log(savedCovers.innerHTML)
 }
 
 
