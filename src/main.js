@@ -107,23 +107,20 @@ function makeNew() {
 function makeMyBook (){
   event.preventDefault()
 
-  if (userCoverField.value && userTitleField.value && userTagline1Field.value && userTagline2Field.value) {
+  if (!userCoverField.value || !userTitleField.value || !userTagline1Field.value || !userTagline2Field.value) {
+    createNewBookButton.disable = true
+    return alert("You have some empty fields! Fill em in.")
+
+  } else {
     covers.push(userCoverField.value);
     titles.push(userTitleField.value);
     descriptors.push(userTagline1Field.value);
     descriptors.push(userTagline2Field.value);
-  } else {
-    alert("You have some empty fields! Fill em in.")
+    var newUserCover = new Cover (userCoverField.value, userTitleField.value, userTagline1Field.value, userTagline2Field.value);
+    goHome();
+    coverImage.src = newUserCover.cover;
+    bookTitle.innerText = newUserCover.title;
+    tagline1.innerText = newUserCover.tagline1;
+    tagline2.innerText = newUserCover.tagline2;
   }
-
-  var newUserCover = new Cover (userCoverField.value, userTitleField.value, userTagline1Field.value, userTagline2Field.value);
-
-  goHome();
-
-  //display our new user cover instance in the main cover
-  coverImage.src = newUserCover.cover;
-  bookTitle.innerText = newUserCover.title;
-  tagline1.innerText = newUserCover.tagline1;
-  tagline2.innerText = newUserCover.tagline2;
-
 };
