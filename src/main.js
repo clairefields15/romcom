@@ -16,7 +16,7 @@ var userTitleField = document.querySelector('.user-title');
 var userTagline1Field = document.querySelector('.user-desc1');
 var userTagline2Field = document.querySelector('.user-desc2');
 var createNewBookButton = document.querySelector('.create-new-book-button');
-var savedCovers = document.querySelector('.saved-covers-section');
+var savedCoversSection = document.querySelector('.saved-covers-section');
 var clickCounter = 0;
 
 // We've provided a few variables below
@@ -116,8 +116,8 @@ function viewSaved() {
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
-  savedCovers.innerHTML = saveHtml;
-  console.log(savedCovers.innerHTML)
+  savedCoversSection.innerHTML = saveHtml;
+  console.log(savedCoversSection.innerHTML)
 }
 
 function makeNew() {
