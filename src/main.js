@@ -112,12 +112,17 @@ function makeMyBook (){
     return alert("You have some empty fields! Fill em in.")
 
   } else {
+    //add input to arrays
     covers.push(userCoverField.value);
     titles.push(userTitleField.value);
     descriptors.push(userTagline1Field.value);
     descriptors.push(userTagline2Field.value);
+
     var newUserCover = new Cover (userCoverField.value, userTitleField.value, userTagline1Field.value, userTagline2Field.value);
+
     goHome();
+    
+    //display cover
     coverImage.src = newUserCover.cover;
     bookTitle.innerText = newUserCover.title;
     tagline1.innerText = newUserCover.tagline1;
