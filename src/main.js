@@ -88,7 +88,6 @@ function saveCover() {
     var savedDescriptor2 = tagline2.innerText
     var mySavedCover = new Cover (savedCover, savedTitle, savedDescriptor1, savedDescriptor2);
     savedCovers.push(mySavedCover)
-    console.log(savedCovers)
   }
 }
 
@@ -101,23 +100,23 @@ function goHome() {
 }
 
 function viewSaved() {
-  var saveHtml = `
-  <section class="main-cover">
-    <img class="cover-image" src="./assets/prairie.jpg">
-    <h2 class="cover-title">Windswept Hearts</h2>
-    <h3 class="tagline">A tale of <span class="tagline-1">passion</span> and <span class="tagline-2">woe</span></h3>
-    <img class="price-tag" src="./assets/price.png">
-    <img class="overlay" src="./assets/overlay.png">
-  </section>
-    `;
   homeSection.classList.add("hidden");
   savedSection.classList.remove("hidden");
   formSection.classList.add("hidden");
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
-  savedCoversSection.innerHTML = saveHtml;
-  console.log(savedCoversSection.innerHTML)
+  for (var i = 0; i < savedCovers.length; i++) {
+    savedCoversSection.innerHTML += `
+      <section class="main-cover">
+        <img class="cover-image" src="${savedCovers[i].cover}">
+        <h2 class="cover-title">${savedCovers[i].title}</h2>
+        <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline1}</span></h3>
+        <img class="price-tag" src="./assets/price.png">
+        <img class="overlay" src="./assets/overlay.png">
+      </section>
+      `;
+    }
 }
 
 function makeNew() {
@@ -145,7 +144,7 @@ function makeMyBook (){
     var newUserCover = new Cover (userCoverField.value, userTitleField.value, userTagline1Field.value, userTagline2Field.value);
 
     goHome();
-    
+
     //display cover
     coverImage.src = newUserCover.cover;
     bookTitle.innerText = newUserCover.title;
