@@ -17,9 +17,14 @@ var userTagline1Field = document.querySelector('.user-desc1');
 var userTagline2Field = document.querySelector('.user-desc2');
 var createNewBookButton = document.querySelector('.create-new-book-button');
 var savedCoversSection = document.querySelector('.saved-covers-section');
-// var specificSavedCover = document.querySelector('#savedCovers[i].id');
 var bodySection = document.querySelector('body');
+
 var clickCounter = 0;
+
+randomCoverImage(covers);
+randomTitle(titles);
+randomTagline1(descriptors);
+randomTagline2(descriptors);
 
 // We've provided a few variables below
 var savedCovers = [
@@ -28,26 +33,24 @@ var savedCovers = [
 var currentCover;
 
 // Add your event listeners here 👇
-homeButton.addEventListener('click', goHome)
-randomCoverButton.addEventListener('click', createRandomCover)
-saveCoverButton.addEventListener('click', saveCover)
-viewSavedButton.addEventListener('click', viewSaved)
-makeCoverButton.addEventListener('click', makeNew)
-createNewBookButton.addEventListener('click', makeMyBook)
-// specificSavedCover.addEventListener('dblclick', deleteSavedCover)
-//bodySection.addEventListener('dblclick', deleteSavedCover)
+homeButton.addEventListener('click', goHome);
+randomCoverButton.addEventListener('click', createRandomCover);
+saveCoverButton.addEventListener('click', saveCover);
+viewSavedButton.addEventListener('click', viewSaved);
+makeCoverButton.addEventListener('click', makeNew);
+createNewBookButton.addEventListener('click', makeMyBook);
 
 savedCoversSection.addEventListener('dblclick', function(event){
       if(event.target.className === 'cover-image'){
         var coverElement = event.target.parentElement;
-        coverElement.parentNode.removeChild(coverElement)
+        coverElement.parentNode.removeChild(coverElement);
   }
 });
 
 //functions and event handlers
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
-}
+};
 
 function randomCoverImage(covers) {
   var coverIndex = getRandomIndex(covers);
@@ -59,57 +62,56 @@ function randomTitle(titles) {
   var titleIndex = getRandomIndex(titles);
   return bookTitle.innerText = titles[titleIndex];
   return titles[titleIndex]
-}
+};
 
 function randomTagline1(descriptors) {
   var tagIndex1 = getRandomIndex(descriptors);
   tagline1.innerText = descriptors[tagIndex1];
   return descriptors[tagIndex1]
-}
+};
 
 function randomTagline2(descriptors) {
   var tagIndex2 = getRandomIndex(descriptors);
   tagline2.innerText = descriptors[tagIndex2];
   return descriptors[tagIndex2]
-}
-
-
-randomCoverImage(covers);
-randomTitle(titles);
-randomTagline1(descriptors);
-randomTagline2(descriptors);
+};
 
 function createRandomCover() {
-  clickCounter = 0
   var cover1 = randomCoverImage(covers);
-  var title1 = randomTitle(titles)
-  var descriptor1 = randomTagline1(descriptors)
-  var descriptor2 = randomTagline2(descriptors)
-  currentCover = new Cover (cover1, title1, descriptor1, descriptor2);
-}
-
+  var title1 = randomTitle(titles);
+  var descriptor1 = randomTagline1(descriptors);
+  var descriptor2 = randomTagline2(descriptors);
+  currentCover = new Cover (cover1, title1, descriptor1, descriptor2)
+};
 
 function saveCover() {
   clickCounter++;
   if (clickCounter === 1) {
-    var savedCover = coverImage.src
-    var savedTitle = bookTitle.innerText
-    var savedDescriptor1 = tagline1.innerText
-    var savedDescriptor2 = tagline2.innerText
+    var savedCover = coverImage.src;
+    var savedTitle = bookTitle.innerText;
+    var savedDescriptor1 = tagline1.innerText;
+    var savedDescriptor2 = tagline2.innerText;
     var mySavedCover = new Cover (savedCover, savedTitle, savedDescriptor1, savedDescriptor2);
     savedCovers.push(mySavedCover)
-    // var specificSavedCover = document.querySelector('#${savedCovers[0].id}');
-    // specificSavedCover.addEventListener('dblclick', deleteSavedCover)
   }
-}
+};
+
+function makeNew() {
+  homeSection.classList.add("hidden");
+  formSection.classList.remove("hidden");
+  savedSection.classList.add("hidden");
+  randomCoverButton.classList.add("hidden");
+  saveCoverButton.classList.add("hidden");
+  homeButton.classList.remove("hidden")
+};
 
 function goHome() {
   homeSection.classList.remove("hidden");
   formSection.classList.add("hidden");
   randomCoverButton.classList.remove("hidden");
   saveCoverButton.classList.remove("hidden");
-  homeButton.classList.add("hidden");
-}
+  homeButton.classList.add("hidden")
+};
 
 function viewSaved() {
   homeSection.classList.add("hidden");
@@ -118,6 +120,7 @@ function viewSaved() {
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
+
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
       <section class="main-cover" id="${savedCovers[i].id}">
@@ -128,25 +131,16 @@ function viewSaved() {
         <img class="overlay" src="./assets/overlay.png">
       </section>
       `;
-    }
-}
+  }
+};
 
-
-
-function makeNew() {
-  homeSection.classList.add("hidden");
-  formSection.classList.remove("hidden");
-  randomCoverButton.classList.add("hidden");
-  saveCoverButton.classList.add("hidden");
-  homeButton.classList.remove("hidden");
-}
 
 function makeMyBook (){
-  event.preventDefault()
+  event.preventDefault();
 
   if (!userCoverField.value || !userTitleField.value || !userTagline1Field.value || !userTagline2Field.value) {
-    createNewBookButton.disable = true
-    return alert("You have some empty fields! Fill em in.")
+    createNewBookButton.disable = true;
+    return alert("You have some empty fields! Fill em in.");
 
   } else {
     //add input to arrays
