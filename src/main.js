@@ -17,6 +17,8 @@ var userTagline1Field = document.querySelector('.user-desc1');
 var userTagline2Field = document.querySelector('.user-desc2');
 var createNewBookButton = document.querySelector('.create-new-book-button');
 var savedCoversSection = document.querySelector('.saved-covers-section');
+// var specificSavedCover = document.querySelector('#savedCovers[i].id');
+var bodySection = document.querySelector('body');
 var clickCounter = 0;
 
 // We've provided a few variables below
@@ -32,7 +34,8 @@ saveCoverButton.addEventListener('click', saveCover)
 viewSavedButton.addEventListener('click', viewSaved)
 makeCoverButton.addEventListener('click', makeNew)
 createNewBookButton.addEventListener('click', makeMyBook)
-
+// specificSavedCover.addEventListener('dblclick', deleteSavedCover)
+bodySection.addEventListener('dblclick', deleteSavedCover)
 
 //functions and event handlers
 function getRandomIndex(array) {
@@ -88,6 +91,8 @@ function saveCover() {
     var savedDescriptor2 = tagline2.innerText
     var mySavedCover = new Cover (savedCover, savedTitle, savedDescriptor1, savedDescriptor2);
     savedCovers.push(mySavedCover)
+    // var specificSavedCover = document.querySelector('#${savedCovers[0].id}');
+    // specificSavedCover.addEventListener('dblclick', deleteSavedCover)
   }
 }
 
@@ -108,7 +113,7 @@ function viewSaved() {
   homeButton.classList.remove("hidden");
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
-      <section class="main-cover">
+      <section class="main-cover" id="${savedCovers[i].id}">
         <img class="cover-image" src="${savedCovers[i].cover}">
         <h2 class="cover-title">${savedCovers[i].title}</h2>
         <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline1}</span></h3>
@@ -117,6 +122,11 @@ function viewSaved() {
       </section>
       `;
     }
+}
+
+function deleteSavedCover() {
+  savedCovers.splice(0, 1);
+  console.log(savedCovers)
 }
 
 function makeNew() {
