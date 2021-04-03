@@ -48,6 +48,15 @@ savedCoversSection.addEventListener('dblclick', function(event){
 });
 
 //functions and event handlers
+function goHome() {
+  homeSection.classList.remove("hidden");
+  formSection.classList.add("hidden");
+  randomCoverButton.classList.remove("hidden");
+  saveCoverButton.classList.remove("hidden");
+  homeButton.classList.add("hidden")
+  savedCoversSection.innerHTML = ``
+};
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
@@ -96,23 +105,6 @@ function saveCover() {
   }
 };
 
-function makeNew() {
-  homeSection.classList.add("hidden");
-  formSection.classList.remove("hidden");
-  savedSection.classList.add("hidden");
-  randomCoverButton.classList.add("hidden");
-  saveCoverButton.classList.add("hidden");
-  homeButton.classList.remove("hidden")
-};
-
-function goHome() {
-  homeSection.classList.remove("hidden");
-  formSection.classList.add("hidden");
-  randomCoverButton.classList.remove("hidden");
-  saveCoverButton.classList.remove("hidden");
-  homeButton.classList.add("hidden")
-};
-
 function viewSaved() {
   homeSection.classList.add("hidden");
   savedSection.classList.remove("hidden");
@@ -120,7 +112,6 @@ function viewSaved() {
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
-
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
       <section class="main-cover" id="${savedCovers[i].id}">
@@ -134,25 +125,29 @@ function viewSaved() {
   }
 };
 
+function makeNew() {
+  homeSection.classList.add("hidden");
+  formSection.classList.remove("hidden");
+  savedSection.classList.add("hidden");
+  randomCoverButton.classList.add("hidden");
+  saveCoverButton.classList.add("hidden");
+  homeButton.classList.remove("hidden")
+  savedCoversSection.innerHTML = ``
+};
 
 function makeMyBook (){
   event.preventDefault();
-
   if (!userCoverField.value || !userTitleField.value || !userTagline1Field.value || !userTagline2Field.value) {
     createNewBookButton.disable = true;
     return alert("You have some empty fields! Fill em in.");
-
   } else {
     //add input to arrays
     covers.push(userCoverField.value);
     titles.push(userTitleField.value);
     descriptors.push(userTagline1Field.value);
     descriptors.push(userTagline2Field.value);
-
     var newUserCover = new Cover (userCoverField.value, userTitleField.value, userTagline1Field.value, userTagline2Field.value);
-
     goHome();
-
     //display cover
     coverImage.src = newUserCover.cover;
     bookTitle.innerText = newUserCover.title;
