@@ -35,7 +35,14 @@ viewSavedButton.addEventListener('click', viewSaved)
 makeCoverButton.addEventListener('click', makeNew)
 createNewBookButton.addEventListener('click', makeMyBook)
 // specificSavedCover.addEventListener('dblclick', deleteSavedCover)
-bodySection.addEventListener('dblclick', deleteSavedCover)
+//bodySection.addEventListener('dblclick', deleteSavedCover)
+
+savedCoversSection.addEventListener('dblclick', function(event){
+      if(event.target.className === 'cover-image'){
+        var coverElement = event.target.parentElement;
+        coverElement.parentNode.removeChild(coverElement)
+  }
+});
 
 //functions and event handlers
 function getRandomIndex(array) {
@@ -116,7 +123,7 @@ function viewSaved() {
       <section class="main-cover" id="${savedCovers[i].id}">
         <img class="cover-image" src="${savedCovers[i].cover}">
         <h2 class="cover-title">${savedCovers[i].title}</h2>
-        <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline1}</span></h3>
+        <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
         <img class="price-tag" src="./assets/price.png">
         <img class="overlay" src="./assets/overlay.png">
       </section>
@@ -124,10 +131,7 @@ function viewSaved() {
     }
 }
 
-function deleteSavedCover() {
-  savedCovers.splice(0, 1);
-  console.log(savedCovers)
-}
+
 
 function makeNew() {
   homeSection.classList.add("hidden");
