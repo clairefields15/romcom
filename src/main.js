@@ -16,6 +16,10 @@ var userTitleField = document.querySelector('.user-title');
 var userTagline1Field = document.querySelector('.user-desc1');
 var userTagline2Field = document.querySelector('.user-desc2');
 var createNewBookButton = document.querySelector('.create-new-book-button');
+var savedCoversSection = document.querySelector('.saved-covers-section');
+// var specificSavedCover = document.querySelector('#savedCovers[i].id');
+var bodySection = document.querySelector('body');
+var clickCounter = 0;
 
 // We've provided a few variables below
 var savedCovers = [
@@ -26,11 +30,12 @@ var currentCover;
 // Add your event listeners here 👇
 homeButton.addEventListener('click', goHome)
 randomCoverButton.addEventListener('click', createRandomCover)
-// saveCoverButton.addEventListener('click', saveCover)
+saveCoverButton.addEventListener('click', saveCover)
 viewSavedButton.addEventListener('click', viewSaved)
 makeCoverButton.addEventListener('click', makeNew)
 createNewBookButton.addEventListener('click', makeMyBook)
-
+// specificSavedCover.addEventListener('dblclick', deleteSavedCover)
+bodySection.addEventListener('dblclick', deleteSavedCover)
 
 //functions and event handlers
 function getRandomIndex(array) {
@@ -68,6 +73,7 @@ randomTagline1(descriptors);
 randomTagline2(descriptors);
 
 function createRandomCover() {
+  clickCounter = 0
   var cover1 = randomCoverImage(covers);
   var title1 = randomTitle(titles)
   var descriptor1 = randomTagline1(descriptors)
@@ -75,9 +81,20 @@ function createRandomCover() {
   currentCover = new Cover (cover1, title1, descriptor1, descriptor2);
 }
 
-// function saveCover() {
-//
-// }
+
+function saveCover() {
+  clickCounter++;
+  if (clickCounter === 1) {
+    var savedCover = coverImage.src
+    var savedTitle = bookTitle.innerText
+    var savedDescriptor1 = tagline1.innerText
+    var savedDescriptor2 = tagline2.innerText
+    var mySavedCover = new Cover (savedCover, savedTitle, savedDescriptor1, savedDescriptor2);
+    savedCovers.push(mySavedCover)
+    // var specificSavedCover = document.querySelector('#${savedCovers[0].id}');
+    // specificSavedCover.addEventListener('dblclick', deleteSavedCover)
+  }
+}
 
 function goHome() {
   homeSection.classList.remove("hidden");
@@ -94,6 +111,22 @@ function viewSaved() {
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
+  for (var i = 0; i < savedCovers.length; i++) {
+    savedCoversSection.innerHTML += `
+      <section class="main-cover" id="${savedCovers[i].id}">
+        <img class="cover-image" src="${savedCovers[i].cover}">
+        <h2 class="cover-title">${savedCovers[i].title}</h2>
+        <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline1}</span></h3>
+        <img class="price-tag" src="./assets/price.png">
+        <img class="overlay" src="./assets/overlay.png">
+      </section>
+      `;
+    }
+}
+
+function deleteSavedCover() {
+  savedCovers.splice(0, 1);
+  console.log(savedCovers)
 }
 
 function makeNew() {
@@ -121,7 +154,7 @@ function makeMyBook (){
     var newUserCover = new Cover (userCoverField.value, userTitleField.value, userTagline1Field.value, userTagline2Field.value);
 
     goHome();
-    
+
     //display cover
     coverImage.src = newUserCover.cover;
     bookTitle.innerText = newUserCover.title;
