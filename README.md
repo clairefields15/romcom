@@ -22,7 +22,7 @@ Additionally, users have the ability to delete covers from the Saved Covers page
 
 ## Contributors
 
-The website was built by two Front End Engineering, Mod 1 students at the [Turing School of Software and Design](https://turing.io/): Alex Kio and Claire Fields. Instructors at the Turing School built the HTML, CSS and Cover.js files and provided us with a few helpful lines of code to get started with in the Main.js file (where all of our work took place).
+The website was built by two Front End Engineering, Mod 1 students at the [Turing School of Software and Design](https://turing.io/): [Alex Kio](https://github.com/alexmkio/) and [Claire Fields](https://github.com/clairefields15/). Instructors at the Turing School built the HTML, CSS and Cover.js files and provided us with a few helpful lines of code to get started with in the Main.js file (where all of our work took place).
 
 ## Technologies Used
 
