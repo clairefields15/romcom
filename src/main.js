@@ -16,12 +16,6 @@ var userTagline1Field = document.querySelector('.user-desc1');
 var userTagline2Field = document.querySelector('.user-desc2');
 var createNewBookButton = document.querySelector('.create-new-book-button');
 var savedCoversSection = document.querySelector('.saved-covers-section');
-var bodySection = document.querySelector('body');
-
-randomCoverImage(covers);
-randomTitle(titles);
-randomTagline1(descriptors);
-randomTagline2(descriptors);
 
 var savedCovers = [
   new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
@@ -93,6 +87,11 @@ function createRandomCover() {
   currentCover = new Cover (cover1, title1, descriptor1, descriptor2);
 };
 
+randomCoverImage(covers);
+randomTitle(titles);
+randomTagline1(descriptors);
+randomTagline2(descriptors);
+
 function saveCover() {
   var savedCover = coverImage.src;
   var savedTitle = bookTitle.innerText;
@@ -143,14 +142,14 @@ function makeNew() {
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
-  savedCoversSection.innerHTML = ``
+  savedCoversSection.innerHTML = ``;
 };
 
-function makeMyBook (){
+function makeMyBook() {
   event.preventDefault();
   if (!userCoverField.value || !userTitleField.value || !userTagline1Field.value || !userTagline2Field.value) {
     return alert("You have some empty fields! Fill em in.");
-  } else {
+  }else {
     covers.push(userCoverField.value);
     titles.push(userTitleField.value);
     descriptors.push(userTagline1Field.value);
