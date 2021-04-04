@@ -53,7 +53,7 @@ function goHome() {
   formSection.classList.add("hidden");
   randomCoverButton.classList.remove("hidden");
   saveCoverButton.classList.remove("hidden");
-  homeButton.classList.add("hidden")
+  homeButton.classList.add("hidden");
   savedCoversSection.innerHTML = ``
 };
 
@@ -131,7 +131,7 @@ function makeNew() {
   savedSection.classList.add("hidden");
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
-  homeButton.classList.remove("hidden")
+  homeButton.classList.remove("hidden");
   savedCoversSection.innerHTML = ``
 };
 
