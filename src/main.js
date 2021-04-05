@@ -160,5 +160,14 @@ function makeMyBook() {
     bookTitle.innerText = newUserCover.title;
     tagline1.innerText = newUserCover.tagline1;
     tagline2.innerText = newUserCover.tagline2;
+    clearCoverFields()
+
   }
 };
+
+function clearCoverFields() {
+  userCoverField.value = '';
+  userTitleField.value = '';
+  userTagline1Field.value = '';
+  userTagline2Field.value = '';
+}
